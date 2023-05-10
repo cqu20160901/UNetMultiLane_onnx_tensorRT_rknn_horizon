@@ -22,6 +22,6 @@ horizon：地平线模型、测试（量化）图像、测试结果、转换测�
 
 基于UNet 进行修改，可以识别出"所在车道"和"车道线类型"。
 
-# 训练分割效果
+# 分割效果
 
 ![image](https://github.com/cqu20160901/UNetMutilLane_onnx_tensorRT_rknn_horizon/blob/main/onnx/test_result.jpg)
