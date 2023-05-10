@@ -20,7 +20,8 @@ horizon：地平线模型、测试（量化）图像、测试结果、转换测�
 
 车道线的类别（10个类别）：单条白色实线、单条白色虚线、单条黄色实线、单条黄色虚线、双条白色实线、双条黄色实线、双条黄色虚线、双条白色实虚线、双条白色黄色实线、双条白色虚实线。
 
-基于UNet 进行修改，可以识别出所在车道和车道线类型。
+基于UNet 进行修改，可以识别出"所在车道"和"车道线类型"。
 
-训练分割效果：
+# 训练分割效果
+
 ![image](https://github.com/cqu20160901/UNetMutilLane_onnx_tensorRT_rknn_horizon/blob/main/onnx/test_result.jpg)
