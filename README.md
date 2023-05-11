@@ -1,6 +1,6 @@
 # UNetMutilLane_onnx_tensorRT_rknn_horizon
 
-UNetMutliLane 部署版本，测试不同平台部署（onnx、tensorRT、RKNN、Horzion）。
+UNetMutliLane 多车道线和车道线类型识别部署版本，测试不同平台部署（onnx、tensorRT、RKNN、Horzion），可识别所在的车道和车道线的类型。
 
 # 文件夹结构说明
 
