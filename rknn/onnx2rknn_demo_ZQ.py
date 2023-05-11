@@ -135,7 +135,7 @@ if __name__ == '__main__':
     mask = cv2.resize(mask, (img_w, img_h))
 
     for i in range(len(lane_id)):
-        if i == 0:
+        if lane_id[i] == 0:
             continue
 
         lane_type = cls_output[lane_Id_type.index(lane_id[i])]
