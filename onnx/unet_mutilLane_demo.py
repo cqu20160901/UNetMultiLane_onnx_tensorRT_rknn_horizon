@@ -39,6 +39,26 @@ def softmax(x, axis):
     return value
 
 
+def get_line(mask, input_h, input_w):
+    kernel = np.ones((3, 3), np.uint8)  # 5x5 的全为 1 的矩形核
+    eroded_image = cv2.erode(mask, kernel, iterations=1)
+
+    x_temp = []
+    x_list = []
+    y_list = []
+    for h in range(0, input_h, 8):
+        x_temp.clear()
+        for w in range(0, input_w, 2):
+            if eroded_image[h, w] != 0:
+                x_temp.append(w)
+        if len(x_temp) > 3:
+            x_mean = sum(x_temp) / len(x_temp)
+            x_list.append(x_mean * 3)
+            y_list.append(h * 2.25)
+
+    return x_list, y_list
+
+
 def test_image(img_path):
     input_w = 640
     input_h = 480
@@ -49,18 +69,25 @@ def test_image(img_path):
     image = image.transpose((2, 0, 1))
     image = np.expand_dims(image, axis=0)
 
-    ort_session = ort.InferenceSession('./UnetLane_mutilLane_ZQ.onnx')
+    ort_session = ort.InferenceSession('UnetLane_mutilLane_ZQ.onnx')
     output = (ort_session.run(None, {'data': image}))
 
     seg_output = softmax(output[0], axis=1)[0]
     cls_output = softmax(output[1], axis=2)[0]
 
+    seg_output[seg_output < 0.5] = 0
+    seg_output[seg_output != 0] = 1
+    for i in range(1, seg_output.shape[0], 1):
+        x_list, y_list = get_line(seg_output[i, :, :], input_h, input_w)
+        for j in range(len(x_list)):
+            cv2.circle(orig_img, (int(x_list[j]), int(y_list[j])), 7, color_list[i], -1)
+
     cls_output = np.argmax(cls_output, axis=1)
+
     mask = np.zeros(shape=(input_h, input_w, 3))
 
     lane_id = []
     write_pos = []
-
     for i in range(mask.shape[0] - 1, 0, -1):
         for j in range(mask.shape[1] - 1, 0, -1):
             max_index = np.argmax(seg_output[:, i, j])
@@ -91,14 +118,15 @@ def test_image(img_path):
 
     cv2.putText(orig_img, 'line type:', (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2, cv2.LINE_AA)
     for i in range(len(line_type)):
-        cv2.putText(orig_img, str(i) + ': ' + str(line_type[i]), (10, 80 + i * 30), cv2.FONT_HERSHEY_SIMPLEX, 0.6,(0, 0, 0), 2, cv2.LINE_AA)
+        cv2.putText(orig_img, str(i) + ': ' + str(line_type[i]), (10, 80 + i * 30), cv2.FONT_HERSHEY_SIMPLEX, 0.6,
+                    (0, 0, 0), 2, cv2.LINE_AA)
 
     opencv_image = np.clip(np.array(orig_img) + np.array(mask) * 0.4, a_min=0, a_max=255)
     opencv_image = opencv_image.astype("uint8")
-    cv2.imwrite('./test_result.jpg', opencv_image)
+    cv2.imwrite('test_result.jpg', opencv_image)
 
 
 if __name__ == "__main__":
     print('This is main ...')
-    img_path = './test.jpg'
+    img_path = 'test.jpg'
     test_image(img_path)
