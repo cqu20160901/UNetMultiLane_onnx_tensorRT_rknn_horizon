@@ -25,3 +25,5 @@ horizon：地平线模型、测试（量化）图像、测试结果、转换测�
 # 分割效果
 
 ![image](https://github.com/cqu20160901/UNetMutilLane_onnx_tensorRT_rknn_horizon/blob/main/onnx/test_result.jpg)
+
+![image](https://github.com/cqu20160901/UNetMutilLane_onnx_tensorRT_rknn_horizon/assets/22290931/b265e79a-598e-4b24-9f9a-8bafdc0edd9c)
