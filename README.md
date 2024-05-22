@@ -1,6 +1,6 @@
-# UNetMutilLane_onnx_tensorRT_rknn_horizon
+# UNetMultiLane_onnx_tensorRT_rknn_horizon
 
-UNetMutliLane 多车道线和车道线类型识别部署版本，测试不同平台部署（onnx、tensorRT、RKNN、Horzion），可识别所在的车道和车道线的类型。
+UNetMultiLane 多车道线和车道线类型识别部署版本，测试不同平台部署（onnx、tensorRT、RKNN、Horzion），可识别所在的车道和车道线的类型。
 
 # 文件夹结构说明
 
@@ -24,6 +24,6 @@ horizon：地平线模型、测试（量化）图像、测试结果、转换测�
 
 # 分割效果
 
-![image](https://github.com/cqu20160901/UNetMutilLane_onnx_tensorRT_rknn_horizon/blob/main/onnx/test_result.jpg)
+![image](https://github.com/cqu20160901/UNetMultiLane_onnx_tensorRT_rknn_horizon/blob/main/onnx/test_result.jpg)
 
-![image](https://github.com/cqu20160901/UNetMutilLane_onnx_tensorRT_rknn_horizon/assets/22290931/b265e79a-598e-4b24-9f9a-8bafdc0edd9c)
+![image](https://github.com/cqu20160901/UNetMultiLane_onnx_tensorRT_rknn_horizon/assets/22290931/b265e79a-598e-4b24-9f9a-8bafdc0edd9c)
