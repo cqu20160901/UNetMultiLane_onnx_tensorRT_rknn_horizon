@@ -2,7 +2,7 @@
 
 UNetMultiLane 多车道线和车道线类型识别部署版本，测试不同平台部署（onnx、tensorRT、RKNN、Horzion），可识别所在的车道和车道线的类型。
 
-训练代码参考[【UNetMultiLan】](https://github.com/cqu20160901/UNetMultiLane)
+训练代码参考[【UNetMultiLaneee】](https://github.com/cqu20160901/UNetMultiLane)
 
 # 文件夹结构说明
 
